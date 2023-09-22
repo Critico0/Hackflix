@@ -3,10 +3,16 @@ import Overlay from "react-bootstrap/Overlay";
 
 import search from "../assets/icons/Search.svg";
 
-function SearchBtn() {
+function SearchBtn({onInputChange}) {
   const [show, setShow] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
   const target = useRef(null);
 
+  const handleInputChange = (event) => {
+    const newValue = event.target.value;
+    setSearchValue(newValue);
+    onInputChange(newValue);
+  };
   return (
     <>
       <span ref={target} onClick={() => setShow(!show)}>
@@ -31,7 +37,13 @@ function SearchBtn() {
               ...props.style,
             }}
           >
-            <input className="red" type="text" placeholder="Title"></input>
+            <input
+              className="search_btn"
+              type="text"
+              placeholder="Title"
+              value={searchValue}
+              onChange={handleInputChange}
+            ></input>
           </div>
         )}
       </Overlay>

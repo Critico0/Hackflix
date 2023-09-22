@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -7,8 +8,16 @@ import logoN from "../assets/icons/N.svg";
 import notification from "../assets/icons/Notification.svg";
 import avatar from "../assets/icons/Avatar.svg";
 import SearchBtn from "./SearchBtn";
+import Home from "../pages/Home";
 
 function NavbarMain() {
+
+  const [inputValue, setInputValue] = useState('');
+
+  const handleInputChange = (value) => {
+    setInputValue(value);
+  };
+
   return (
     <>
       <Navbar className="d-flex justify-content-between navbar">
@@ -29,8 +38,7 @@ function NavbarMain() {
         </Container>
         <Container className="d-flex justify-content-end me-4 w-25">
           <Nav.Item className="mx-3">
-            <SearchBtn />
-            {/* <img className="icon" src={search}></img> */}
+            <SearchBtn onInputChange={handleInputChange} />
           </Nav.Item>
           <Nav.Item className="mx-2">
             <img className="icon" src={notification}></img>
@@ -40,6 +48,7 @@ function NavbarMain() {
           </Nav.Item>
         </Container>
       </Navbar>
+      <Home inputValue={inputValue} />
     </>
   );
 }

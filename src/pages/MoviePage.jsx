@@ -38,10 +38,10 @@ function MoviePage() {
   return (
     <>
       {movieData === null ? (
-        <div className=" d-flex movie-page-container">
+        <div className=" d-flex loading">
           <Audio
-            height="80"
-            width="80"
+            height="570"
+            width="370"
             radius="9"
             color="green"
             ariaLabel="three-dots-loading"
@@ -51,13 +51,13 @@ function MoviePage() {
         </div>
       ) : (
         <div className=" d-flex movie-page-container">
-          <div className="col-6">
+          <div className="col-4">
             <img
               className="movie-page-poster img-fluid"
               src={`https://image.tmdb.org/t/p/w500${movieData.poster_path}`}
             />
           </div>
-          <div className="col-6">
+          <div className="col-8">
             <h1>
               {movieData.title}({date[0]})
             </h1>
