@@ -3,6 +3,7 @@ import { Audio } from "react-loader-spinner";
 import { Link } from "react-router-dom";
 
 function Movies({ movieList }) {
+  console.log(movieList)
   return (
     <>
       {movieList === null ? (
@@ -23,7 +24,7 @@ function Movies({ movieList }) {
             <Link to={`/movie/${movie.id}`}>
               <img
                 className="movie-poster"
-                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
                 alt={`movie poster of ${movie.title}`}
               />
             </Link>

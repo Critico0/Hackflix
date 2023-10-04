@@ -48,7 +48,6 @@ function NavbarMain() {
           </Nav.Item>
         </Container>
       </Navbar>
-      <Home inputValue={inputValue} />
     </>
   );
 }

@@ -8,8 +8,7 @@ import axios from "axios";
 function MoviePage() {
   const params = useParams();
   const [movieData, setMovieData] = useState(null);
-  const [pathColor, setPathColor] = useState("#8c0000");
-  const [trailColor, setTrailColor] = useState("#330000");
+
 
   useEffect(() => {
     async function fetchMovie() {
@@ -17,15 +16,7 @@ function MoviePage() {
         `https://api.themoviedb.org/3/movie/${params.movieId}?api_key=68a9152cabcadda0c72ae666d80874c4`
       );
       setMovieData(data.data);
-
-      if (Math.round(data.data.vote_average * 10) > 40) {
-        setPathColor("#574601");
-        setTrailColor("#e3b602");
-      }
-      if (Math.round(data.data.vote_average * 10) > 70) {
-        setPathColor("#023800");
-        setTrailColor("#048000");
-      }
+      console.log(data)
     }
     fetchMovie();
   }, []);
@@ -66,17 +57,6 @@ function MoviePage() {
               <label key={genre.id}>-{genre.name}</label>
             ))}
             <p className="fs-5">-{movieData.tagline}-</p>
-            <p className="w-25 d-flex justify-content-center">
-              <CircularProgressbar
-                value={movieData.vote_average}
-                text={`${Math.round(movieData.vote_average * 10)}%`}
-                styles={buildStyles({
-                  textColor: "white",
-                  pathColor: `${pathColor}`,
-                  trailColor: `${trailColor}`,
-                })}
-              />
-            </p>
             <h3>Resumen</h3>
             <p>{movieData.overview}</p>
           </div>
